@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  Divider,
   Flex,
   Heading,
   Image,
@@ -12,10 +13,10 @@ import logo from "../assets/logo2.jpeg";
 
 export const Hero = () => {
   return (
-    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }}>
-      <Flex p={8} flex={1} align={"center"} justify={"center"}>
-        <Stack spacing={6} w={"full"} maxW={"lg"}>
-          <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }}>
+    <Stack minH={"100vh"} direction={{ base: "column", md: "row" }} >
+      <Flex p={8} flex={1} align={"center"} justify={"center"} >
+        <Stack spacing={6} w={"full"} maxW={"lg"}  >
+          <Heading fontSize={{ base: "3xl", md: "4xl", lg: "5xl" }} >
             <Text
               as={"span"}
               position={"relative"}
@@ -36,7 +37,7 @@ export const Hero = () => {
           </Heading>
           <Text fontSize={{ base: "md", lg: "lg" }} color={"gray.500"}>
             San Benito. Entre Ríos . Argentina.
-            <hr/>
+            <Divider/>
             Cartucheras, portacosméticos, porta termo y muchísimas cosas más.
           </Text>
           <Stack direction={{ base: "column", md: "row" }} spacing={4}>

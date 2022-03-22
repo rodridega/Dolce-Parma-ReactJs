@@ -6,14 +6,20 @@ import { Card } from "./components/Card";
 import { Container, SimpleGrid } from "@chakra-ui/react";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
+import { Spinner } from "@chakra-ui/react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [cards, setCards] = useState([]);
   const [prodCarrito, setProdCarrito] = useState([]);
+  const [loading, setLoading] = useState(true);
   let cantidad;
 
   const getProducts = () => {
-    const url = "https://docs.google.com/spreadsheets/d/1INp2XAuBS-vxzYv-qIlK1J5-SAU7-H2_p_FHl2quz94/gviz/tq?";
+    const url =
+      "https://docs.google.com/spreadsheets/d/1INp2XAuBS-vxzYv-qIlK1J5-SAU7-H2_p_FHl2quz94/gviz/tq?";
+    setLoading(true);
+
     fetch(url)
       .then((res) => res.text())
       .then((rep) => {
@@ -25,6 +31,8 @@ function App() {
           image: c[3]?.v,
           id: c[4]?.v,
         }));
+        setLoading(false);
+
         setCards(objetos);
       });
   };
@@ -32,29 +40,45 @@ function App() {
   useEffect(() => {
     getProducts();
   }, []);
+
   return (
-    <div>
-      <MyMenu prodCarrito={prodCarrito} setProdCarrito={setProdCarrito} />
-      <Hero/>
-      <Title  />
-      <Container maxW="90rem" centerContent id='titulo'>
-        <SimpleGrid columns={[1, 2, 3, 4]}>
-          {cards.map((prod) => {
-            return (
-              <Card
-                prod={prod}
-                key={prod.id}
-                setProdCarrito={setProdCarrito}
-                prodCarrito={prodCarrito}
-                cantidad={cantidad}
-              />
-            );
-          })}
-        </SimpleGrid>
-      </Container>
+    <BrowserRouter>
       
-      <Footer/>
-    </div>
+      <MyMenu prodCarrito={prodCarrito} setProdCarrito={setProdCarrito} />
+      <Hero />
+      <Title />
+
+      {loading ? (
+        <Spinner
+          thickness="4px"
+          speed="0.65s"
+          emptyColor="gray.200"
+          color="pink.500"
+          size="xl"
+          display={"flex"}
+          mx={"auto"}
+          my={"20"}
+        />
+      ) : (
+        <Container maxW="90rem" centerContent id="titulo">
+          <SimpleGrid columns={[1, 2, 3, 4]}>
+            {cards.map((prod) => {
+              return (
+                <Card
+                  prod={prod}
+                  key={prod.id}
+                  setProdCarrito={setProdCarrito}
+                  prodCarrito={prodCarrito}
+                  cantidad={cantidad}
+                />
+              );
+            })}
+          </SimpleGrid>
+        </Container>
+      )}
+
+      <Footer />
+    </BrowserRouter>
   );
 }
 
