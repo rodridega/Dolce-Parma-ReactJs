@@ -1,15 +1,9 @@
 import React from "react";
-import {
-  Box,
-  Heading,
-  Container,
-  Flex,
-  Spacer,
-} from "@chakra-ui/react";
-import { ChevronDownIcon } from "@chakra-ui/icons";
+import { Box, Heading, Container, Flex, Spacer } from "@chakra-ui/react";
+
 import { Cart } from "./Cart";
 
-export const MyMenu = ({prodCarrito, setProdCarrito}) => {
+export const MyMenu = ({ prodCarrito, setProdCarrito }) => {
   return (
     <Box
       bg={"pink.300"}
@@ -18,7 +12,7 @@ export const MyMenu = ({prodCarrito, setProdCarrito}) => {
       color="white"
       position={"fixed"}
       zIndex={"banner"}
-      display={'flex'}
+      display={"flex"}
     >
       <Container maxW="container.xl">
         <Flex>
@@ -26,7 +20,6 @@ export const MyMenu = ({prodCarrito, setProdCarrito}) => {
             <Heading as="h1">Dolce Parma</Heading>
           </Box>
           <Spacer />
-          
         </Flex>
       </Container>
       <Cart prodCarrito={prodCarrito} setProdCarrito={setProdCarrito} />

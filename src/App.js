@@ -7,7 +7,7 @@ import { Container, SimpleGrid } from "@chakra-ui/react";
 import { Footer } from "./components/Footer";
 import { Hero } from "./components/Hero";
 import { Spinner } from "@chakra-ui/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -42,8 +42,7 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      
+    <>
       <MyMenu prodCarrito={prodCarrito} setProdCarrito={setProdCarrito} />
       <Hero />
       <Title />
@@ -78,7 +77,7 @@ function App() {
       )}
 
       <Footer />
-    </BrowserRouter>
+    </>
   );
 }
 
